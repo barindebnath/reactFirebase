@@ -3,7 +3,7 @@ import firebaseDb from "./firebase";
 
 export const Textbox = () => {
   const [text, setText] = useState();
-  // var text = "new Text";
+
   useEffect(() => {
     firebaseDb
       .ref("input/")
@@ -13,10 +13,11 @@ export const Textbox = () => {
       });
     firebaseDb.ref("input/").on("value", (snapshot) => {
       setText(snapshot.val());
-      // console.log(snapshot.val());
     });
   });
+
   const items = [];
+
   const getRandomColor = () => {
     var letters = "0123456789ABCDEF";
     var color = "#";
@@ -25,6 +26,7 @@ export const Textbox = () => {
     }
     return color;
   };
+
   for (var i = 0; i < 20; i++) {
     var x = Math.random() * 5 + 1;
     var divStyle = {
@@ -36,6 +38,7 @@ export const Textbox = () => {
     };
     items.push(<li style={divStyle}>{text}</li>);
   }
+  
   return (
     <div id="itemsDiv">
       <ul>{items}</ul>
